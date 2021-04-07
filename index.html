@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <link
+            href="https://unpkg.com/normalize.css@7.0.0/normalize.css" rel="stylesheet"
+            type="text/css"/>
+
+    <script
+            crossorigin
+            src="https://unpkg.com/@babel/standalone/babel.min.js">
+    </script>
+    <script
+            crossorigin
+            src="https://unpkg.com/react@17/umd/react.production.min.js">
+    </script>
+    <script
+            crossorigin
+            src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js">
+    </script>
+    <script
+            crossorigin
+            src="https://unpkg.com/d3@5.16.0/dist/d3.min.js">
+    </script>
+
+    <script>
+        var PALETTE = [
+            '#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd',
+            '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf',
+            '#aec7e8', '#ffbb78', '#98df8a', '#ff9896', '#c5b0d5',
+            '#c49c94', '#f7b6d2', '#dbdb8d', '#9edae5'
+        ];
+    </script>
+
+    <style>
+        :root {
+            --boxWidth: 3px;
+            --boxHeight: 1.6em;
+        }
+
+        html {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            padding: 2em;
+        }
+
+        table tr td.mono {
+            font-family: monospace;
+        }
+
+        table tr th,
+        table tr td {
+            padding: 0.5em 2em;
+        }
+    </style>
+
+    <script type="text/babel">
+        class AllReports extends React.Component {
+            constructor(props) {
+                super(props)
+                this.state = { reports: [] }
+            }
+
+            async componentDidMount() {
+                let resp = await fetch('reports.json')
+                this.setState({reports: await resp.json()})
+            }
+
+            render() {
+                const items = [];
+                for (const r of this.state.reports) {
+                    items.push(
+                        <tr>
+                            <td className="mono">
+                                <a href={r.path}>{r.datetime}</a>
+                            </td>
+                            <td className="mono">
+                                <a href={'https://github.com/edgedb/edgedb/commit/' + r.sha}>
+                                    {r.sha.substr(0, 8)}
+                                </a>
+                            </td>
+                            <td className="mono">{r.ref}</td>
+                            <td className="mono">{r.num_simulations}</td>
+                            <td className="mono">{r.qos_score}</td>
+                        </tr>
+                    );
+                }
+                return <div>
+                    <h1>EdgeDB Pool Simulation Test Reports</h1>
+                    <table>
+                        <tr>
+                            <th>Datetime</th>
+                            <th>Commit</th>
+                            <th>Branch</th>
+                            <th>Num of Simulations</th>
+                            <th>QoS Score</th>
+                        </tr>
+                        {items}
+                    </table>
+                </div>
+            }
+        }
+
+        ReactDOM.render(
+            <AllReports/>,
+            document.getElementById('root')
+        );
+    </script>
+</head>
+<body>
+<div id="root"></div>
+</body>
+</html>
