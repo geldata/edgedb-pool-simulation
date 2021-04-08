@@ -72,8 +72,12 @@
             render() {
                 const items = [];
                 for (const r of this.state.reports) {
+                    let bgColor = 'none'
+                    if (r.qos_score < 80) {
+                        bgColor = '#faa'
+                    }
                     items.push(
-                        <tr>
+                        <tr style={{backgroundColor: bgColor}}>
                             <td className="mono">
                                 <a href={r.path}>{r.datetime}</a>
                             </td>
