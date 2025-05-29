@@ -22,3 +22,4 @@
 {"path": "reports/060bbc15ce514a9e671c0f60b2efa596639b9e4a.html", "sha": "060bbc15ce514a9e671c0f60b2efa596639b9e4a", "ref": "refs/pull/2442/merge", "num_simulations": 7, "qos_score": 93, "datetime": "2021-04-21 17:48:06.195614"}
 {"path": "reports/fc6f5f3ce4c30ae16936fe381b58e175a5f82094.html", "sha": "fc6f5f3ce4c30ae16936fe381b58e175a5f82094", "ref": "refs/heads/pool-test", "num_simulations": 7, "qos_score": 93, "datetime": "2021-04-21 18:14:18.480885"}
 {"path": "reports/0c85408d3e40ec866f33a9d967a493da4ce7bd31.html", "sha": "0c85408d3e40ec866f33a9d967a493da4ce7bd31", "ref": "refs/heads/pool-test", "num_simulations": 7, "qos_score": 93, "datetime": "2021-04-21 19:43:08.657269"}
+{"path": "reports/b3b2c5e919fa2e76747eca0f6fd56bd3b56ca793.html", "sha": "b3b2c5e919fa2e76747eca0f6fd56bd3b56ca793", "ref": "refs/heads/pool-test", "num_simulations": 7, "qos_score": 92, "datetime": "2021-04-21 19:58:38.488972"}
